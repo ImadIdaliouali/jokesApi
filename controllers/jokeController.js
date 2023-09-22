@@ -76,4 +76,17 @@ const deleteJoke = async (req, res) => {
   }
 };
 
-module.exports = { getAllJokes, getJoke, createJoke, updateJoke, deleteJoke };
+const getRandomJoke = (req, res) => res.status(200).send('Get A Random Joke');
+
+const getRandomJokeByType = (req, res) =>
+  res.status(200).send('Get A Random Joke by type');
+
+module.exports = {
+  getAllJokes,
+  getJoke,
+  createJoke,
+  updateJoke,
+  deleteJoke,
+  getRandomJoke,
+  getRandomJokeByType,
+};

@@ -4,6 +4,10 @@ const jokeController = require('../controllers/jokeController');
 
 const router = express.Router();
 
+router.get('/random', jokeController.getRandomJoke);
+
+router.get('/:type/random', jokeController.getRandomJokeByType);
+
 router
   .route('/')
   .get(jokeController.getAllJokes)
