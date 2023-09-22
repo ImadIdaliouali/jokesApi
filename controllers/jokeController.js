@@ -20,6 +20,13 @@ const getJoke = async (req, res) => {
   try {
     const joke = await Joke.findById(req.params.id);
 
+    if (!joke) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'No joke found',
+      });
+    }
+
     res.status(200).json({
       status: 'success',
       data: {
@@ -53,6 +60,13 @@ const updateJoke = async (req, res) => {
       new: true,
     });
 
+    if (!joke) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'No joke found',
+      });
+    }
+
     res.status(200).json({
       status: 'success',
       data: {
@@ -66,7 +80,14 @@ const updateJoke = async (req, res) => {
 
 const deleteJoke = async (req, res) => {
   try {
-    await Joke.findByIdAndDelete(req.params.id);
+    const joke = await Joke.findByIdAndDelete(req.params.id);
+
+    if (!joke) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'No joke found',
+      });
+    }
 
     res.status(204).json({
       status: 'success',
@@ -76,10 +97,28 @@ const deleteJoke = async (req, res) => {
   }
 };
 
-const getRandomJoke = (req, res) => res.status(200).send('Get A Random Joke');
+const getRandomJoke = async (req, res) => {
+  try {
+    const { type } = req.params;
+    const filter = type ? { type } : {};
 
-const getRandomJokeByType = (req, res) =>
-  res.status(200).send('Get A Random Joke by type');
+    const count = await Joke.count(filter);
+    const rand = Math.floor(Math.random() * count);
+
+    const randomJoke = await Joke.findOne(filter).skip(rand).select('-_id');
+
+    if (!randomJoke) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'No joke found',
+      });
+    }
+
+    res.status(200).json(randomJoke);
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 module.exports = {
   getAllJokes,
@@ -88,5 +127,4 @@ module.exports = {
   updateJoke,
   deleteJoke,
   getRandomJoke,
-  getRandomJokeByType,
 };

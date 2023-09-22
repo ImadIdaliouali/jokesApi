@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/random', jokeController.getRandomJoke);
 
-router.get('/:type/random', jokeController.getRandomJokeByType);
+router.get('/:type/random', jokeController.getRandomJoke);
 
 router
   .route('/')
