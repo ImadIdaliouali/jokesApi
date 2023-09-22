@@ -1,16 +1,18 @@
 const express = require('express');
 
+const jokeController = require('../controllers/jokeController');
+
 const router = express.Router();
 
 router
   .route('/')
-  .get((req, res) => res.status(200).send('Get All Jokes'))
-  .post((req, res) => res.status(200).send('Create Joke'));
+  .get(jokeController.getAllJokes)
+  .post(jokeController.createJoke);
 
 router
   .route('/:id')
-  .get((req, res) => res.status(200).send('Get Joke'))
-  .patch((req, res) => res.status(200).send('Update Joke'))
-  .delete((req, res) => res.status(200).send('Delete Joke'));
+  .get(jokeController.getJoke)
+  .patch(jokeController.updateJoke)
+  .delete(jokeController.deleteJoke);
 
 module.exports = router;
