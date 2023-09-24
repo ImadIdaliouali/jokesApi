@@ -1,4 +1,4 @@
-# Jokes API
+# [Jokes API](https://jokes-7w3t.onrender.com/api/v1/jokes/random)
 
 <div align="center">
  <img src="https://media.giphy.com/media/l41lISBVXb9gRT32w/giphy.gif" width="300" alt="jokes GIF">
@@ -24,44 +24,44 @@
 
 ### 1. Get a Random Joke
 
-```js
-GET http://localhost:3000/api/v1/jokes/random
+```ruby
+GET /api/v1/jokes/random
 ```
 
 ### 2. Get a Random Joke By Type
 
-```js
-GET http://localhost:3000/api/v1/jokes/:type/random
+```ruby
+GET /api/v1/jokes/:type/random
 ```
 
 ### 3. Get all Jokes
 
-```js
-GET http://localhost:3000/api/v1/jokes
+```ruby
+GET /api/v1/jokes
 ```
 
 ### 4. Get a Specific Joke
 
-```js
-GET http://localhost:3000/api/v1/jokes/:id
+```ruby
+GET /api/v1/jokes/:id
 ```
 
 ### 5. Create a Joke
 
-```js
-POST http://localhost:3000/api/v1/jokes
+```ruby
+POST /api/v1/jokes
 ```
 
 ### 6. Update a Specific Joke
 
-```js
-PATCH http://localhost:3000/api/v1/jokes/:id
+```ruby
+PATCH /api/v1/jokes/:id
 ```
 
 ### 7. Delete a Specific Joke
 
-```js
-DELETE http://localhost:3000/api/v1/jokes/:id
+```ruby
+DELETE /api/v1/jokes/:id
 ```
 
 ## Built With
